@@ -39,7 +39,13 @@ return [
         'country'         => 'Land',
         'state'           => 'Staat',
         'true'            => 'Wahr',
-        'false'           => 'Falsch',
+        'false'           =>     [
+            'no-result-found' => 'Wir konnten keine Aufzeichnungen finden.',
+            'country'         => 'Land',
+            'state'           => 'Staat',
+            'true'            => 'Wahr',
+            'false'           => 'Falsch',
+        ],
     ],
     'layouts'       =>
     [
