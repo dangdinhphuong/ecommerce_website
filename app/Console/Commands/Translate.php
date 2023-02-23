@@ -100,7 +100,7 @@ class Translate extends Command
         foreach ($this->files as $item) {
             try {
                 if (file_exists(dirname(base_path($item)))) {
-                    $file = base_path($this->files[0]);
+                    $file = base_path($item);
                     $arrays = include $file;
                     $arrayTranslated = $this->translateArrayRecursive($arrays, $this->locale);
                     $this->createFile($file, $arrayTranslated);

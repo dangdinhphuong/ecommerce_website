@@ -1,0 +1,55 @@
+<?php
+
+return array (
+  'datagrid' => 
+  array (
+    'actions' => 'hành động',
+    'id' => 'Các cột chỉ mục chỉ có giá trị lớn hơn 0',
+    'massaction' => 
+    array (
+      'mass-delete-confirm' => 'Bạn có thực sự muốn xóa :resource đã chọn này không?',
+      'mass-update-status' => 'Bạn có thực sự muốn cập nhật trạng thái của :resource đã chọn này không?',
+      'delete' => 'Bạn có thực sự muốn thực hiện hành động này?',
+      'edit' => 'Bạn có thực sự muốn chỉnh sửa :resource này không?',
+      'delete-category-product' => 'Các danh mục đã chọn có chứa các sản phẩm. Thực hiện hành động này sẽ xóa các sản phẩm liên quan. Bạn có thực sự muốn thực hiện hành động này?',
+    ),
+    'error' => 
+    array (
+      'multiple-sort-keys-error' => 'Lỗi nghiêm trọng! Đã tìm thấy nhiều khóa sắp xếp, vui lòng giải quyết URL theo cách thủ công',
+      'multiple-search-keys-error' => 'Đã tìm thấy nhiều khóa tìm kiếm, vui lòng giải quyết URL theo cách thủ công',
+    ),
+    'zero-index' => 'Các cột chỉ mục chỉ có thể có các giá trị lớn hơn 0',
+    'no-records' => 'Không có dữ liệu được tìm thấy',
+    'filter-fields-missing' => 'Một số trường bắt buộc không có giá trị, vui lòng kiểm tra đúng cột, điều kiện và giá trị',
+    'filter-exists' => 'Giá trị bộ lọc đã tồn tại.',
+    'click_on_action' => 'Bạn có thực sự muốn thực hiện hành động này?',
+    'search' => 'Tìm kiếm ở đây...',
+    'search-title' => 'Tìm kiếm',
+    'channel' => 'Kênh',
+    'locale' => 'địa phương',
+    'customer-group' => 'Nhóm khách hàng',
+    'filter' => 'Lọc',
+    'column' => 'Chọn cột',
+    'condition' => 'Chọn điều kiện',
+    'contains' => 'Chứa',
+    'ncontains' => 'không chứa',
+    'equals' => 'Bằng với',
+    'nequals' => 'Không bằng',
+    'greater' => 'Lớn hơn',
+    'less' => 'Ít hơn',
+    'greatere' => 'Lớn hơn bằng',
+    'lesse' => 'Nhỏ hơn bằng',
+    'value' => 'Chọn giá trị',
+    'true' => 'Đúng / Đang hoạt động',
+    'false' => 'Sai / Không hoạt động',
+    'between' => 'Ở giữa',
+    'apply' => 'Áp dụng',
+    'items-per-page' => 'Các mục trên mỗi trang',
+    'value-here' => 'Giá trị ở đây',
+    'numeric-value-here' => 'Giá trị số ở đây',
+    'submit' => 'Nộp',
+    'edit' => 'Biên tập',
+    'delete' => 'Xóa bỏ',
+    'view' => 'Xem',
+  ),
+);
