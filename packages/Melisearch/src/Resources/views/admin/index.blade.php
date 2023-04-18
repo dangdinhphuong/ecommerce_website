@@ -17,6 +17,7 @@
         </div>
 
         <div class="page-content">
+        <iframe src="{{env('APP_URL')}}:7700" title="Package Melisearch" style="width:100%; height:770px"></iframe>
         </div>
     </div>
 

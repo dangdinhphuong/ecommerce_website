@@ -10,7 +10,7 @@ use MeiliSearch\Client;
 class MelisearchController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
+
     /**
      * Contains route related configuration
      *
@@ -37,21 +37,14 @@ class MelisearchController extends Controller
      */
     public function index()
     {
-        $client = new Client('http://localhost:7700', 'YYA@aB5L9LXKdUnX');
-
-            $index = $client->index('movies');
-
-            $movies = [
-                ['id' => 1, 'title' => 'The Shawshank Redemption', 'year' => 1994],
-                ['id' => 2, 'title' => 'The Godfather', 'year' => 1972],
-                ['id' => 3, 'title' => 'The Godfather: Part II', 'year' => 1974],
-                // ...
-            ];
-
-        $index->addDocuments($movies);
+        dd(config('melisearch.url'), config('melisearch.pass'));
+//        $client = new Client('http://localhost:7700', '123456');
+//        $index = $client->index('movies');
+//        $index->delete();
+//        $movies = $this->createRandomMoviesArray();
+//        $index->addDocuments($movies);
         return view($this->_config['view']);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -69,7 +62,7 @@ class MelisearchController extends Controller
      */
     public function store()
     {
-        
+
     }
 
     /**
@@ -91,7 +84,7 @@ class MelisearchController extends Controller
      */
     public function update($id)
     {
-        
+
     }
 
     /**
@@ -102,6 +95,6 @@ class MelisearchController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 }

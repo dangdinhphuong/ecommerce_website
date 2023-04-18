@@ -115,7 +115,7 @@ return array (
     array (
       'page-title' => 'Tạo tài khoản khách hàng mới',
       'title' => 'Đăng ký',
-      'firstname' => 'Họ',
+      'firstname' => 'Tên đầu tiên',
       'lastname' => 'Họ',
       'email' => 'E-mail',
       'password' => 'Mật khẩu',
@@ -196,7 +196,7 @@ return array (
         'edit-success' => 'Hô sơ được cập nhật thành công.',
         'edit-fail' => 'Lỗi! Không thể cập nhật hồ sơ, vui lòng thử lại sau.',
         'unmatch' => 'Mật khẩu cũ không khớp.',
-        'fname' => 'Họ',
+        'fname' => 'Tên đầu tiên',
         'lname' => 'Họ',
         'gender' => 'Giới tính',
         'other' => 'Khác',
@@ -237,7 +237,7 @@ return array (
         array (
           'page-title' => 'Thêm địa chỉ',
           'company_name' => 'Tên công ty',
-          'first_name' => 'Họ',
+          'first_name' => 'Tên đầu tiên',
           'last_name' => 'Họ',
           'vat_id' => 'mã số hóa đơn',
           'vat_help_note' => '[Lưu ý: Sử dụng Mã quốc gia với Id VAT. Ví dụ. INV01234567891]',
@@ -257,7 +257,7 @@ return array (
         array (
           'page-title' => 'sửa địa chỉ',
           'company_name' => 'Tên công ty',
-          'first_name' => 'Họ',
+          'first_name' => 'Tên đầu tiên',
           'last_name' => 'Họ',
           'vat_id' => 'mã số hóa đơn',
           'title' => 'sửa địa chỉ',
@@ -320,7 +320,7 @@ return array (
           'discount-amount' => 'Số tiền chiết khấu',
           'grand-total' => 'Tổng cộng',
           'total-paid' => 'Tổng số chi trả',
-          'total-refunded' => 'Tổng số tiền hoàn lại',
+          'total-refunded' => 'Tổng số tiền hoàn trả',
           'total-due' => 'Tổng số tiền đến hạn',
           'shipping-address' => 'Địa chỉ giao hàng',
           'billing-address' => 'Địa chỉ thanh toán',
@@ -551,7 +551,7 @@ return array (
       'billing-address' => 'Địa chỉ thanh toán',
       'sign-in' => 'Đăng nhập',
       'company-name' => 'Tên công ty',
-      'first-name' => 'Họ',
+      'first-name' => 'Tên đầu tiên',
       'last-name' => 'Họ',
       'email' => 'E-mail',
       'address1' => 'Địa chỉ đường phố',
@@ -747,7 +747,7 @@ return array (
       ),
       'verification' => 
       array (
-        'heading' => 'Bagisto - Xác minh email',
+        'heading' => 'Bagisto - Xác minh Email',
         'subject' => 'Thư xác minh',
         'verify' => 'Xác thực tài khoản của bạn',
         'summary' => 'Đây là thư để xác minh rằng địa chỉ email bạn đã nhập là của bạn.
@@ -756,7 +756,7 @@ return array (
       'subscription' => 
       array (
         'subject' => 'Email đăng ký',
-        'greeting' => 'Chào mừng đến với Bagisto - Đăng ký email',
+        'greeting' => 'Chào mừng đến với Bagisto - Đăng ký Email',
         'unsubscribe' => 'hủy đăng ký',
         'summary' => 'Cảm ơn đã đưa tôi vào hộp thư đến của bạn. Đã lâu rồi bạn mới đọc email của Bagisto và chúng tôi không muốn hộp thư đến của bạn bị quá tải. Nếu bạn vẫn không muốn nhận
                 tin tức tiếp thị qua email mới nhất thì chắc chắn hãy nhấp vào nút bên dưới.',
