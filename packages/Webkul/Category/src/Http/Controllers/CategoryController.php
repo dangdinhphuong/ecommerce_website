@@ -7,7 +7,7 @@ use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Category\Http\Requests\CategoryRequest;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Core\Models\Channel;
-
+use Melisearch\Services\MelisearchService;
 class CategoryController extends Controller
 {
     /**
@@ -40,11 +40,14 @@ class CategoryController extends Controller
      */
     public function __construct(
         CategoryRepository $categoryRepository,
-        AttributeRepository $attributeRepository
+        AttributeRepository $attributeRepository,
+        MelisearchService $melisearchService
     ) {
         $this->categoryRepository = $categoryRepository;
 
         $this->attributeRepository = $attributeRepository;
+
+        $this->melisearchService = $melisearchService;
 
         $this->_config = request('_config');
     }
@@ -85,8 +88,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $categoryRequest)
     {
-        $this->categoryRepository->create($categoryRequest->all());
-
+       $data = $this->categoryRepository->create($categoryRequest->all());
+        $this->melisearchService->createOrUpdate(['id'=> $data->id, 'name'=> $data->name],'category');
         session()->flash('success', trans('admin::app.response.create-success', ['name' => 'Category']));
 
         return redirect()->route($this->_config['redirect']);
@@ -118,8 +121,8 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $categoryRequest, $id)
     {
-        $this->categoryRepository->update($categoryRequest->all(), $id);
-
+        $data = $this->categoryRepository->update($categoryRequest->all(), $id);
+        $this->melisearchService->createOrUpdate(['id'=> $id, 'name'=> $data->name],'category');
         session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Category']));
 
         return redirect()->route($this->_config['redirect']);
@@ -141,7 +144,7 @@ class CategoryController extends Controller
 
         try {
             $this->categoryRepository->delete($id);
-
+            $this->melisearchService->delete($id,'category');
             return response()->json(['message' => trans('admin::app.response.delete-success', ['name' => 'Category'])]);
         } catch (\Exception $e) {}
 

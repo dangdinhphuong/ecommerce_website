@@ -37,12 +37,6 @@ class MelisearchController extends Controller
      */
     public function index()
     {
-        dd(config('melisearch.url'), config('melisearch.pass'));
-//        $client = new Client('http://localhost:7700', '123456');
-//        $index = $client->index('movies');
-//        $index->delete();
-//        $movies = $this->createRandomMoviesArray();
-//        $index->addDocuments($movies);
         return view($this->_config['view']);
     }
     /**

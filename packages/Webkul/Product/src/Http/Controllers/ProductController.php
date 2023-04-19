@@ -18,7 +18,7 @@ use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
-
+use Melisearch\Services\MelisearchService;
 class ProductController extends Controller
 {
     /**
@@ -104,7 +104,8 @@ class ProductController extends Controller
         AttributeFamilyRepository $attributeFamilyRepository,
         InventorySourceRepository $inventorySourceRepository,
         ProductAttributeValueRepository $productAttributeValueRepository,
-        ProductInventoryRepository $productInventoryRepository
+        ProductInventoryRepository $productInventoryRepository,
+        MelisearchService $melisearchService
     ) {
         $this->_config = request('_config');
 
@@ -123,6 +124,8 @@ class ProductController extends Controller
         $this->productAttributeValueRepository = $productAttributeValueRepository;
 
         $this->productInventoryRepository = $productInventoryRepository;
+
+        $this->melisearchService = $melisearchService;
     }
 
     /**
@@ -246,9 +249,9 @@ class ProductController extends Controller
                 }
             }
         }
-
-        $this->productRepository->update($data, $id);
-
+        if($this->productRepository->update($data, $id)){
+            $this->melisearchService->createOrUpdate(['id'=> $id, 'name'=> $data['name'],'sku'=> $data['sku'],'url_key'=> $data['url_key']],'products');
+        }
         session()->flash('success', trans('admin::app.response.update-success', ['name' => 'Product']));
 
         return redirect()->route($this->_config['redirect']);
