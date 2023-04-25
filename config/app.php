@@ -283,7 +283,7 @@ return [
         Webkul\Notification\Providers\NotificationServiceProvider::class,
 
 
-        Melisearch\Providers\MelisearchServiceProvider::class,
+        SystemCrm\Providers\SystemCrmServiceProvider::class
     ],
 
     /*

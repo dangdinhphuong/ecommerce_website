@@ -109,7 +109,8 @@
             "Webkul\\DebugBar\\": "packages/Webkul/DebugBar/src",
             "Webkul\\Marketing\\": "packages/Webkul/Marketing/src",
             "Webkul\\Notification\\": "packages/Webkul/Notification/src",
-            "Melisearch\\": "packages/Melisearch/src"
+            "Melisearch\\": "packages/Melisearch/src",
+            "SystemCrm\\": "packages/SystemCrm/src"
         }
     },
     "autoload-dev": {

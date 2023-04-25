@@ -354,7 +354,7 @@ class ProductController extends Controller
 
         try {
             $this->productRepository->delete($id);
-
+            $this->melisearchService->delete($id,'products');
             return response()->json([
                 'message' => trans('admin::app.response.delete-success', ['name' => 'Product']),
             ]);
@@ -381,6 +381,7 @@ class ProductController extends Controller
 
             if (isset($product)) {
                 $this->productRepository->delete($productId);
+                $this->melisearchService->delete($productId,'products');
             }
         }
 
