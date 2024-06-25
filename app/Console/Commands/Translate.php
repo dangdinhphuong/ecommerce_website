@@ -23,18 +23,6 @@ class Translate extends Command
 
     protected $translates;
     protected $locale = 'en';
-    protected $files = [
-        "packages/Webkul/Admin/src/Resources/lang/en/app.php",
-        "packages/Webkul/SocialLogin/src/Resources/lang/en/app.php",
-        "packages/Webkul/BookingProduct/src/Resources/lang/en/app.php",
-        "packages/Webkul/Core/src/Resources/lang/en/app.php",
-        "packages/Webkul/Velocity/src/Resources/lang/en/app.php",
-        "packages/Webkul/Tax/src/Resources/lang/en/app.php",
-        "packages/Webkul/Customer/src/Resources/lang/en/app.php",
-        "packages/Webkul/Paypal/src/Resources/lang/en/app.php",
-        "packages/Webkul/Ui/src/Resources/lang/en/app.php",
-        "packages/Webkul/Shop/src/Resources/lang/en/app.php",
-    ];
 
     /**
      * Create a new command instance.
@@ -71,36 +59,15 @@ class Translate extends Command
             $this->processAll();
         }
     }
-    public function translateArrayRecursive(array $array, string $locale = 'en'): array
-    {
-        array_walk_recursive($array, function (&$value, $key) use ($locale) {
-            if (is_string($value)) {
-                $value = $this->translates->setSource('en')->setTarget($locale)->translate($value);
-            }
-        });
-        return $array;
-    }
-    public function createFile($path, $content)
-    {
-        try {
-            $newPath = str_replace('/en/', '/' . $this->locale . '/', $path);
-            $content = "<?php\n\nreturn " . var_export($content, true) . ";\n";
-            if (!file_exists(dirname($newPath))) {
-                mkdir(dirname($newPath), 0777, true);
-            }
-            File::put($newPath, $content);
-            return true;
-        } catch (Exception $exception) {
 
-            return $exception;
-        }
-    }
     public function processAll()
     {
-        foreach ($this->files as $item) {
+        $allAppLangFiles = $this->getAllAppLangFiles();
+        foreach ($allAppLangFiles as $item) {
             try {
-                if (file_exists(dirname(base_path($item)))) {
-                    $file = base_path($item);
+
+                if (file_exists($item)) {
+                    $file = $item;
                     $arrays = include $file;
                     $arrayTranslated = $this->translateArrayRecursive($arrays, $this->locale);
                     $this->createFile($file, $arrayTranslated);
@@ -111,6 +78,7 @@ class Translate extends Command
         }
         throw new MissingInputException('Dịch thành công');
     }
+
     public function processOnce($path = '')
     {
         try {
@@ -127,4 +95,62 @@ class Translate extends Command
         }
         throw new MissingInputException('Dịch thành công');
     }
+
+    public function getAllAppLangFiles($folder = 'packages', $language = 'en')
+    {
+        $appFiles = [];
+        $targetFilePath = str_replace('en',$language , 'src\Resources\lang\en\app.php');
+        $directory = base_path($folder);
+        $allFiles = File::allFiles($directory);
+        foreach ($allFiles as $file) {
+            $filePath = $file->getPathname();
+            if (strpos($filePath, $targetFilePath) != false) {
+                $appFiles[] = $filePath;
+            }
+        }
+
+        return $appFiles;
+    }
+
+    public function translateArrayRecursive(array $array, string $locale = 'en'): array
+    {
+        array_walk_recursive($array, function (&$value, $key) use ($locale) {
+            if (is_string($value)) {
+                $valueBefore = $value;
+
+                // Capitalize first letter if original is capitalized
+                if (ctype_upper(substr($valueBefore, 0, 1))) {
+                    $value = ucfirst($this->translates->setSource('en')->setTarget($locale)->translate($value));
+                } else {
+                    $value = $this->translates->setSource('en')->setTarget($locale)->translate($value);
+                }
+
+                dump("Key: $key, Before: $valueBefore, After: $value");
+            }
+        });
+        return $array;
+    }
+
+    public function createFile($path, $content)
+    {
+        try {
+            $newPath = str_replace('en', $this->locale , $path);
+            $content = "<?php\n\nreturn " . var_export($content, true) . ";\n";
+            if (!file_exists(dirname($newPath))) {
+                // Thư mục không tồn tại, tạo mới
+                mkdir(dirname($newPath), 0777, true);
+            } else {
+                // Thư mục đã tồn tại, xóa và tạo lại
+                rmdir(dirname($newPath));
+                mkdir(dirname($newPath), 0777, true);
+            }
+
+            File::put($newPath, $content);
+            return true;
+        } catch (Exception $exception) {
+
+            return $exception;
+        }
+    }
+
 }
